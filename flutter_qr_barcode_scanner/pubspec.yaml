@@ -30,6 +30,11 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter_barcode_scanner: ^1.0.2
   barcode: ^1.17.1
+  barcode_widget: ^1.5.0
+  share: ^0.6.5+4
+  shared_preferences: ^0.5.12+4
+  clipboard: ^0.1.2+8
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:
