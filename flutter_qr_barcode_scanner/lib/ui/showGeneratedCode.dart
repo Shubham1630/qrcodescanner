@@ -1,8 +1,4 @@
 
-
-
-
-
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
@@ -93,13 +89,14 @@ class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
                     height: 150,
                   ),
                   SizedBox(height: 10,),
-                  Text(' ${widget.barcodeData}\n',
-                      style: TextStyle(fontSize: 20)),
-
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(' ${widget.barcodeData}\n',
+                        style: TextStyle(fontSize: 20)),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
                       Column(
                          mainAxisSize: MainAxisSize.min,
                         children: [
