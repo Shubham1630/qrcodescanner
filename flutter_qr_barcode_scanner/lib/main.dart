@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
 
    List<Widget> _appBar = <Widget>[
      Text('Barcode scan'),
-     Text("GeneratedQrCodes"),
+     Text("Generate Scan"),
      Text("History"),
      Text("Setting")
    ];
@@ -54,7 +54,7 @@ class _MyAppState extends State<MyApp> {
 
     try {
       QRCode qrCode = new QRCode();
-      saved_scanned_barcodes = await StorageHelper.read("image");
+      saved_scanned_barcodes = await StorageHelper.read("barcode");
       if(saved_scanned_barcodes == null){
         saved_scanned_barcodes = [];
       }
@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
       qrCode.qrCodeData = _scanBarcode;
       qrCode.currentdate = date;
       saved_scanned_barcodes.add(qrCode);
-      StorageHelper.save("image", saved_scanned_barcodes);
+      StorageHelper.save("barcode", saved_scanned_barcodes);
 
 
     } catch(Exception){

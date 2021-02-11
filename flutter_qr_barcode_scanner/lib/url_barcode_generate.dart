@@ -32,7 +32,7 @@ class MyCustomFormState extends State<URLBarcode> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(padding: EdgeInsets.all(15),
+          Padding(padding: EdgeInsets.all(25),
           child: TextFormField(
             controller: controller ,
             validator: (value) {

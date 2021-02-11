@@ -19,7 +19,7 @@ class ScanBarcode extends StatefulWidget {
 
 class _ScanBarcodeState extends State<ScanBarcode> {
 
-  List<QRCode> saved_images = [];
+  List<QRCode> saved_barcodes = [];
   String _scanBarcode;
 
 
@@ -32,13 +32,13 @@ class _ScanBarcodeState extends State<ScanBarcode> {
 
     try {
       QRCode qrCode = new QRCode();
-      saved_images = await StorageHelper.read("image");
-      if(saved_images == null){
-        saved_images = [];
+      saved_barcodes = await StorageHelper.read("barcode");
+      if(saved_barcodes == null){
+        saved_barcodes = [];
       }
-      if(saved_images.isNotEmpty) {
-        for (int i = 0; i < saved_images.length; i++) {
-          if (saved_images[i].qrCodeData.contains(_scanBarcode)) {
+      if(saved_barcodes.isNotEmpty) {
+        for (int i = 0; i < saved_barcodes.length; i++) {
+          if (saved_barcodes[i].qrCodeData.contains(_scanBarcode)) {
             return;
           }
         }
@@ -47,8 +47,8 @@ class _ScanBarcodeState extends State<ScanBarcode> {
 
       qrCode.qrCodeData = _scanBarcode;
       qrCode.currentdate = date;
-      saved_images.add(qrCode);
-      StorageHelper.save("image", saved_images);
+      saved_barcodes.add(qrCode);
+      StorageHelper.save("barcode", saved_barcodes);
 
 
     } catch(Exception){

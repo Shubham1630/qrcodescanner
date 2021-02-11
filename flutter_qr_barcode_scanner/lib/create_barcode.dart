@@ -56,6 +56,7 @@ class _CreateBarcodeState extends State<CreateBarcode> {
                         Text(saved_qr_codes[index].qrCodeData,
                           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
                         ),
+                        SizedBox(height: 5,),
                         Text(saved_qr_codes[index].currentdate,
                             style: TextStyle(fontWeight: FontWeight.w300,fontSize: 15)),
                       ],

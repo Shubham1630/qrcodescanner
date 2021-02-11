@@ -60,6 +60,7 @@ class _ShowBarcodeHistoryState extends State<ShowBarcodeHistory> {
                           Text(barcodeData[index].qrCodeData,
                               style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
                           ),
+                          SizedBox(height: 5,),
                           Text(barcodeData[index].currentdate,
                               style: TextStyle(fontWeight: FontWeight.w300,fontSize: 15)),
                         ],
@@ -76,7 +77,7 @@ class _ShowBarcodeHistoryState extends State<ShowBarcodeHistory> {
 
 
   Future<void> getBarcodeData()  async {
-    barcodeData =  await StorageHelper.read("image");
+    barcodeData =  await StorageHelper.read("barcode");
     print(barcodeData.toString());
     setState(() {
 
