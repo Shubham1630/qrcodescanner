@@ -30,29 +30,20 @@ class _TextQrState extends State<TextQr> {
                     ),
                   ),
                 ),
-                // Padding(
-                //   padding: EdgeInsets.all(15),
-                //   child: TextField(
-                //     obscureText: true,
-                //     decoration: InputDecoration(
-                //       border: OutlineInputBorder(),
-                //       labelText: 'Password',
-                //       hintText: 'Enter Password',
-                //     ),
-                //   ),
-                // ),
-
-                RaisedButton(
-                  textColor: Colors.white,
-                  color: Colors.blue,
-                  child: Text('Generate'),
-                  onPressed: (){
-                    txtController.text.isNotEmpty?
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(txtController.text,true)),
-                    ): SnackBar(content: Text("Enter Text"));
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:[ RaisedButton(
+                    textColor: Colors.white,
+                    color: Colors.blue,
+                    child: Text('Generate'),
+                    onPressed: (){
+                      txtController.text.isNotEmpty?
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(txtController.text,true)),
+                      ): SnackBar(content: Text("Enter Text"));
+                    },
+                  )]
                 )
               ],
             )

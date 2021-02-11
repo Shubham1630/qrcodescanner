@@ -3,7 +3,7 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_barcode_scanner/Classes.dart';
-import 'package:flutter_qr_barcode_scanner/barcodeForm.dart';
+import 'package:flutter_qr_barcode_scanner/url_barcode_generate.dart';
 import 'package:flutter_qr_barcode_scanner/storage_helper.dart';
 import 'package:flutter_qr_barcode_scanner/ui/qrcodegenerator.dart';
 import 'package:flutter_qr_barcode_scanner/ui/showGeneratedCode.dart';
@@ -14,7 +14,7 @@ class CreateBarcode extends StatefulWidget {
 }
 
 class _CreateBarcodeState extends State<CreateBarcode> {
-  List<DirectoryOS> saved_images = [];
+  List<QRCode> saved_qr_codes = [];
 
   @override
   void initState() {
@@ -25,20 +25,19 @@ class _CreateBarcodeState extends State<CreateBarcode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: saved_images != null ?
+      body: saved_qr_codes != null ?
       Container(
         child:
         ListView.builder
-          (itemCount: saved_images.length,
+          (itemCount: saved_qr_codes.length,
             itemBuilder: (context,index){
               return GestureDetector(
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(saved_images[index].dirName,false))
+                    MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(saved_qr_codes[index].qrCodeData,false))
                   );
                 },
-
                 child: Card(
                   margin: EdgeInsets.all(7),
                   child:
@@ -46,7 +45,7 @@ class _CreateBarcodeState extends State<CreateBarcode> {
                     contentPadding: EdgeInsets.all(7),
                     leading: BarcodeWidget(
                       barcode: Barcode.qrCode(), // Barcode type and settings
-                      data:saved_images[index].dirName , // Content
+                      data:saved_qr_codes[index].qrCodeData , // Content
                       width: 50,
                       height: 50,
                     ),
@@ -54,10 +53,10 @@ class _CreateBarcodeState extends State<CreateBarcode> {
                       crossAxisAlignment: CrossAxisAlignment.start ,
                       mainAxisAlignment: MainAxisAlignment.start ,
                       children: [
-                        Text(saved_images[index].dirName,
-                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,color: Colors.blue),
+                        Text(saved_qr_codes[index].qrCodeData,
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
                         ),
-                        Text(saved_images[index].currentdate,
+                        Text(saved_qr_codes[index].currentdate,
                             style: TextStyle(fontWeight: FontWeight.w300,fontSize: 15)),
                       ],
                     )
@@ -82,8 +81,8 @@ class _CreateBarcodeState extends State<CreateBarcode> {
   }
 
   Future<void> getSavedQRCodes() async {
-     saved_images = await StorageHelper.read("savedQRCodes");
-     print(saved_images);
+     saved_qr_codes = await StorageHelper.read("savedQRCodes");
+     print(saved_qr_codes);
      setState(() {
 
      });

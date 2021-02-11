@@ -23,7 +23,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _scanBarcode = 'Unknown';
-  List<DirectoryOS> saved_images = [];
+  List<QRCode> saved_scanned_barcodes = [];
   int _selectedIndex = 0;
    List<Widget> _widgetOptions = <Widget>[
      ScanBarcode(),
@@ -53,24 +53,24 @@ class _MyAppState extends State<MyApp> {
     print(newDate);
 
     try {
-      DirectoryOS directoryOS = new DirectoryOS();
-      saved_images = await StorageHelper.read("image");
-      if(saved_images == null){
-        saved_images = [];
+      QRCode qrCode = new QRCode();
+      saved_scanned_barcodes = await StorageHelper.read("image");
+      if(saved_scanned_barcodes == null){
+        saved_scanned_barcodes = [];
       }
-      if(saved_images.isNotEmpty) {
-        for (int i = 0; i < saved_images.length; i++) {
-          if (saved_images[i].dirName.contains(_scanBarcode)) {
+      if(saved_scanned_barcodes.isNotEmpty) {
+        for (int i = 0; i < saved_scanned_barcodes.length; i++) {
+          if (saved_scanned_barcodes[i].qrCodeData.contains(_scanBarcode)) {
             return;
           }
         }
       }
 
 
-      directoryOS.dirName = _scanBarcode;
-      directoryOS.currentdate = date;
-      saved_images.add(directoryOS);
-      StorageHelper.save("image", saved_images);
+      qrCode.qrCodeData = _scanBarcode;
+      qrCode.currentdate = date;
+      saved_scanned_barcodes.add(qrCode);
+      StorageHelper.save("image", saved_scanned_barcodes);
 
 
     } catch(Exception){
@@ -138,13 +138,13 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
             appBar: AppBar(title: _appBar[_selectedIndex],
-            actions: [_selectedIndex == 1 ?
-                IconButton(icon: Icon(Icons.add), onPressed: (){
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => QRCodeGeneratorTab()),
-          );
-        }): Text("")],
+            leading:_selectedIndex == 1 ?
+            IconButton(icon: Icon(Icons.add), onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => QRCodeGeneratorTab()),
+              );
+            }): Text(""),
             centerTitle: true,),
             body: Builder(builder: (BuildContext context) {
               return _widgetOptions[_selectedIndex];

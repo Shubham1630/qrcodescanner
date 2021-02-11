@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_qr_barcode_scanner/barcodeForm.dart';
+import 'package:flutter_qr_barcode_scanner/url_barcode_generate.dart';
 import 'package:flutter_qr_barcode_scanner/ui/textQrcodeGenerate.dart';
 
 
@@ -27,7 +27,7 @@ class QRCodeGeneratorTab extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              MyCustomForm(),
+             URLBarcode(),
               TextQr(),
 
             ],

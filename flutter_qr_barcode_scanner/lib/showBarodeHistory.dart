@@ -18,7 +18,7 @@ class ShowBarcodeHistory extends StatefulWidget {
 
 
 class _ShowBarcodeHistoryState extends State<ShowBarcodeHistory> {
-  List<DirectoryOS> barcodeData = [];
+  List<QRCode> barcodeData = [];
 
 
   @override
@@ -40,7 +40,7 @@ class _ShowBarcodeHistoryState extends State<ShowBarcodeHistory> {
                     onTap: (){
                       Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(barcodeData[index].dirName,false))
+                          MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(barcodeData[index].qrCodeData,false))
                       );
                     },
                     child: Card(
@@ -49,7 +49,7 @@ class _ShowBarcodeHistoryState extends State<ShowBarcodeHistory> {
                         contentPadding: EdgeInsets.all(7),
                       leading: BarcodeWidget(
                         barcode: Barcode.qrCode(), // Barcode type and settings
-                        data:barcodeData[index].dirName , // Content
+                        data:barcodeData[index].qrCodeData , // Content
                         width: 50,
                         height: 50,
                       ),
@@ -57,8 +57,8 @@ class _ShowBarcodeHistoryState extends State<ShowBarcodeHistory> {
                         crossAxisAlignment: CrossAxisAlignment.start ,
                         mainAxisAlignment: MainAxisAlignment.start ,
                         children: [
-                          Text(barcodeData[index].dirName,
-                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18 ,color: Colors.blue),
+                          Text(barcodeData[index].qrCodeData,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
                           ),
                           Text(barcodeData[index].currentdate,
                               style: TextStyle(fontWeight: FontWeight.w300,fontSize: 15)),

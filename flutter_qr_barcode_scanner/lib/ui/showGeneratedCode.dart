@@ -1,6 +1,8 @@
 
 
 
+
+
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,7 @@ class ShowGeneratedQrCode extends StatefulWidget {
 class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
 
 
-  List<DirectoryOS> saved_images = [];
+  List<QRCode> saved_images = [];
 
 
 
@@ -44,23 +46,23 @@ class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
     print(newDate);
 
     try {
-      DirectoryOS directoryOS = new DirectoryOS();
+     QRCode qrCode = new QRCode();
       saved_images = await StorageHelper.read("savedQRCodes");
       if(saved_images == null){
         saved_images = [];
       }
       if(saved_images.isNotEmpty) {
         for (int i = 0; i < saved_images.length; i++) {
-          if (saved_images[i].dirName.contains(widget.barcodeData)) {
+          if (saved_images[i].qrCodeData.contains(widget.barcodeData)) {
             return;
           }
         }
       }
 
 
-      directoryOS.dirName = widget.barcodeData;
-      directoryOS.currentdate = date;
-      saved_images.add(directoryOS);
+     qrCode.qrCodeData = widget.barcodeData;
+     qrCode.currentdate = date;
+      saved_images.add(qrCode);
       StorageHelper.save("savedQRCodes", saved_images);
 
 
@@ -97,20 +99,36 @@ class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      IconButton(icon: Icon(Icons.open_in_browser), onPressed: (){
-                       _openInBrowser();
-                      }),
-                      IconButton(icon: Icon(Icons.share), onPressed: (){
-                        Share.share(widget.barcodeData, subject: 'shared from barcode scan');
-                      }
-                      ,tooltip: "Open",),
-                      IconButton(icon: Icon(Icons.copy), onPressed: (){
-                        FlutterClipboard.copy(widget.barcodeData);
-                        Scaffold.of(context).showSnackBar(new SnackBar(
-                          content: new Text('Copied to clipboard'+" "+widget.barcodeData),
-                        ));
-                      },
-                      tooltip: "Copy",),
+
+                      Column(
+                         mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(icon: Icon(Icons.open_in_browser), onPressed: (){
+                            _openInBrowser();
+                          }),
+                          Text("Open")
+                        ],
+                         
+                      ),
+                      Column(
+                        children: [
+                          IconButton(icon: Icon(Icons.share), onPressed: (){
+                            Share.share(widget.barcodeData, subject: 'shared from barcode scan');
+                          }),
+                          Text("Share")
+                        ],
+                      ),
+                      Column(
+                        children: [IconButton(icon: Icon(Icons.copy), onPressed: (){
+                          FlutterClipboard.copy(widget.barcodeData);
+                          Scaffold.of(context).showSnackBar(new SnackBar(
+                            content: new Text('Copied to clipboard'+" "+widget.barcodeData),
+                          ));
+                        },
+                        ),
+                          Text("Copy")
+                        ],
+                      ),
                     ],
                   ),
                   widget.shouldSave?

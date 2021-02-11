@@ -1,29 +1,29 @@
-class DirectoryOS {
-  String dirName;
+class QRCode {
+  String qrCodeData;
   String currentdate;
 
 
-  DirectoryOS({
-    this.dirName,
+  QRCode({
+    this.qrCodeData,
     this.currentdate
 
   });
 
-  static Map<String, dynamic> toMap(DirectoryOS directoryOS) => {
-    'dirName': directoryOS.dirName,
-    'currentdate': directoryOS.currentdate
+  static Map<String, dynamic> toMap(QRCode qrCode) => {
+    'qrCodeData': qrCode.qrCodeData,
+    'currentdate': qrCode.currentdate
 
   };
 
   Map<String, dynamic> toJson() => {
-    'dirName': dirName,
+    'qrCodeData': qrCodeData,
     'currentdate': currentdate,
 
 
   };
 
-  DirectoryOS.fromJson(Map<String, dynamic> json)
-      : dirName = json['dirName'],
+  QRCode.fromJson(Map<String, dynamic> json)
+      : qrCodeData = json['qrCodeData'],
         currentdate = json['currentdate'];
 
 }

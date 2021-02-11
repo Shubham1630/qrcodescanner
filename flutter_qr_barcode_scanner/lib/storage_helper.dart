@@ -11,7 +11,7 @@ import 'Classes.dart';
 
 class StorageHelper {
 
-  static const String KEY = "IMAGE_KEY";
+  static const String KEY = "QR_CODE";
 
   static Future<String> getFromPreferences() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -22,31 +22,16 @@ class StorageHelper {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.setString(KEY, value);
   }
-
-  static Image imageFromBase64String(String base64String) {
-    return Image.memory(
-      base64Decode(base64String),
-      fit: BoxFit.fill,
-    );
-  }
-
-  static Uint8List dataFromBase64String(String base64String) {
-    return base64Decode(base64String);
-  }
-
-  static String base64String(Uint8List data) {
-    return base64Encode(data);
-  }
-
-  static String encode(List<DirectoryOS> saved_image) => json.encode(
+  
+  static String encode(List<QRCode> saved_image) => json.encode(
     saved_image
-        .map<Map<String, dynamic>>((saved_image) => DirectoryOS.toMap(saved_image))
+        .map<Map<String, dynamic>>((saved_image) => QRCode.toMap(saved_image))
         .toList(),
   );
 
-  static List<DirectoryOS> decode(String saved_images) =>
+  static List<QRCode> decode(String saved_images) =>
       (json.decode(saved_images) as List<dynamic>)
-          .map<DirectoryOS>((item) =>DirectoryOS.fromJson(item))
+          .map<QRCode>((item) =>QRCode.fromJson(item))
           .toList();
 
 
@@ -61,7 +46,7 @@ class StorageHelper {
     if(prefs.getString(key) == null  ){
       return null;
     }
-    List<DirectoryOS> decode = StorageHelper.decode(prefs.getString(key));
+    List<QRCode> decode = StorageHelper.decode(prefs.getString(key));
     return decode;
   }
 }
