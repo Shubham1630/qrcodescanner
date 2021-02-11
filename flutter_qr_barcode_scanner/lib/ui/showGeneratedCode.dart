@@ -6,6 +6,7 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Classes.dart';
 import '../storage_helper.dart';
@@ -13,10 +14,11 @@ import '../storage_helper.dart';
 class ShowGeneratedQrCode extends StatefulWidget {
 
   String barcodeData;
+  bool shouldSave = true;
   @override
   _ShowGeneratedQrCodeState createState() => _ShowGeneratedQrCodeState();
 
-  ShowGeneratedQrCode(this.barcodeData);
+  ShowGeneratedQrCode(this.barcodeData, this.shouldSave);
 }
 
 class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
@@ -24,6 +26,15 @@ class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
 
   List<DirectoryOS> saved_images = [];
 
+
+
+  Future<void> _openInBrowser() async {
+    if (await canLaunch(widget.barcodeData)) {
+    await launch(widget.barcodeData);
+    } else {
+    throw 'Could not launch ';
+    }
+  }
   Future<void>   _saveData() async {
     String date;
     var currentDate = DateTime.now();
@@ -86,17 +97,23 @@ class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      IconButton(icon: Icon(Icons.open_in_browser), onPressed: (){
+                       _openInBrowser();
+                      }),
                       IconButton(icon: Icon(Icons.share), onPressed: (){
                         Share.share(widget.barcodeData, subject: 'shared from barcode scan');
-                      }),
+                      }
+                      ,tooltip: "Open",),
                       IconButton(icon: Icon(Icons.copy), onPressed: (){
                         FlutterClipboard.copy(widget.barcodeData);
                         Scaffold.of(context).showSnackBar(new SnackBar(
                           content: new Text('Copied to clipboard'+" "+widget.barcodeData),
                         ));
-                      }),
+                      },
+                      tooltip: "Copy",),
                     ],
                   ),
+                  widget.shouldSave?
                   ElevatedButton(
                     child: Text("SAVE"),
                     onPressed: (){
@@ -104,7 +121,7 @@ class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
 
 
                     },
-                  )
+                  ): Text("")
 
 
                 ]));
@@ -116,3 +133,5 @@ class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
 
 
 }
+
+

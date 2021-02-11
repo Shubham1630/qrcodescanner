@@ -50,7 +50,7 @@ class _TextQrState extends State<TextQr> {
                     txtController.text.isNotEmpty?
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(txtController.text)),
+                      MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(txtController.text,true)),
                     ): SnackBar(content: Text("Enter Text"));
                   },
                 )

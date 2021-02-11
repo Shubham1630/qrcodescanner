@@ -56,7 +56,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                  setState(() {
                    Navigator.push(
                      context,
-                     MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(controller.text)),
+                     MaterialPageRoute(builder: (context) => ShowGeneratedQrCode(controller.text ,true)),
                    );
                  });
                 }
