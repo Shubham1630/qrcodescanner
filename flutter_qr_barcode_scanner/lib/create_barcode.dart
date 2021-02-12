@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_qr_barcode_scanner/Classes.dart';
 import 'package:flutter_qr_barcode_scanner/url_barcode_generate.dart';
 import 'package:flutter_qr_barcode_scanner/storage_helper.dart';
-import 'package:flutter_qr_barcode_scanner/ui/qrcodegenerator.dart';
 import 'package:flutter_qr_barcode_scanner/ui/showGeneratedCode.dart';
 
 class CreateBarcode extends StatefulWidget {
@@ -68,15 +67,6 @@ class _CreateBarcodeState extends State<CreateBarcode> {
             })
 
       ) : Container(
-        child: Center(
-          child: IconButton(icon: Icon(Icons.add), onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => QRCodeGeneratorTab()),
-            );
-          },
-          iconSize: 55,),
-        ),
       )
     );
   }
