@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> {
   String _scanBarcode = 'Unknown';
   List<QRCode> saved_scanned_barcodes = [];
   int _selectedIndex = 0;
+
    List<Widget> _widgetOptions = <Widget>[
      ScanBarcode(),
      CreateBarcode(),

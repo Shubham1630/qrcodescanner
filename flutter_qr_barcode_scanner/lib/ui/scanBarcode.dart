@@ -65,6 +65,9 @@ class _ScanBarcodeState extends State<ScanBarcode> {
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
           '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+      if(barcodeScanRes.contains("-1")){
+        return;
+      }
       _saveData();
       Navigator.push(
         context,
