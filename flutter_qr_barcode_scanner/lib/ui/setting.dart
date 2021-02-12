@@ -31,7 +31,7 @@ class _SettingState extends State<Setting> {
             child: 
             Card(
               child: ListTile(
-                title: Text("PrivacyPolicy"),
+                title: Text("Privacy Policy"),
                 trailing: Icon(Icons.arrow_forward_ios),
 
               ),

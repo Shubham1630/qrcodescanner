@@ -73,7 +73,7 @@ class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("GeneratedQrCode")),
+      appBar: AppBar(title: Text("Results"),centerTitle: true),
       body: Builder(builder: (BuildContext context) {
         return Container
           (
