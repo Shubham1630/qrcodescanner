@@ -27,14 +27,12 @@ class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
    List<Widget> _widgetOptions = <Widget>[
-     ScanBarcode(),
      CreateBarcode(),
      ShowBarcodeHistory(),
      Setting()
   ];
 
    List<Widget> _appBar = <Widget>[
-     Text('Barcode scan'),
      Text("Generate Scan"),
      Text("History"),
      Text("Setting")
@@ -121,10 +119,6 @@ class _MyAppState extends State<MyApp> {
             currentIndex: _selectedIndex ,
             items: [
               BottomNavigationBarItem(
-                label: "Scan",
-                icon:  Icon(Icons.camera)
-              ),
-              BottomNavigationBarItem(
                 label: "Create",
                   icon:  Icon(Icons.create)
               ),
@@ -139,7 +133,7 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
             appBar: AppBar(title: _appBar[_selectedIndex],
-            leading:_selectedIndex == 1 ?
+            leading:_selectedIndex == 0 ?
             IconButton(icon: Icon(Icons.add), onPressed: (){
               Navigator.push(
                 context,
