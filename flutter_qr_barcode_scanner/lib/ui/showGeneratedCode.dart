@@ -30,7 +30,7 @@ class _ShowGeneratedQrCodeState extends State<ShowGeneratedQrCode> {
     if (await canLaunch(widget.barcodeData)) {
     await launch(widget.barcodeData);
     } else {
-    throw 'Could not launch ';
+      await launch("https://www.google.com/search?q="+widget.barcodeData);
     }
   }
   Future<void>   _saveData() async {

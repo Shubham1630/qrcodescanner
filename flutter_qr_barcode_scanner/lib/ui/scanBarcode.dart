@@ -90,11 +90,35 @@ class _ScanBarcodeState extends State<ScanBarcode> {
   @override
   void initState() {
     super.initState();
-    scanBarcodeNormal();
+    // scanBarcodeNormal();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+        FlatButton(onPressed: () { scanBarcodeNormal(); },
+        child: Column(
+          children: [
+            Icon(Icons.qr_code_scanner ,size: 140,),
+            Padding(padding : EdgeInsets.all(25),child: ButtonTheme(
+              minWidth: 125,
+              height: 40,
+              child: RaisedButton(
+                color: Colors.blue,
+                onPressed: (){scanBarcodeNormal();},
+                child: Text("Scan",style:
+                TextStyle(fontWeight: FontWeight.bold,fontSize: 15,color: Colors.white) ,),
+              ),
+            )
+            )
+          ],
+        )),
+        ],
+      ),
+    );
   }
 }

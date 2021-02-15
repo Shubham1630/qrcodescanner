@@ -3,7 +3,7 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qr_barcode_scanner/Classes.dart';
-import 'package:flutter_qr_barcode_scanner/url_barcode_generate.dart';
+
 import 'package:flutter_qr_barcode_scanner/storage_helper.dart';
 import 'package:flutter_qr_barcode_scanner/ui/showGeneratedCode.dart';
 

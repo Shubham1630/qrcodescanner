@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
   ];
 
    List<Widget> _appBar = <Widget>[
-     Text('Barcode scan'),
+     Text('QR Code Scanner'),
      Text("Generate Scan"),
      Text("History"),
      Text("Setting")
@@ -122,7 +122,7 @@ class _MyAppState extends State<MyApp> {
             items: [
               BottomNavigationBarItem(
                 label: "Scan",
-                icon:  Icon(Icons.camera)
+                icon:  Icon(Icons.qr_code_scanner)
               ),
               BottomNavigationBarItem(
                 label: "Create",
