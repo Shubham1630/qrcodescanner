@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
    List<Widget> _widgetOptions = <Widget>[
+     ScanBarcode(),
      CreateBarcode(),
      ShowBarcodeHistory(),
      Setting()
@@ -138,7 +139,7 @@ class _MyAppState extends State<MyApp> {
             ],
           ),
             appBar: AppBar(title: _appBar[_selectedIndex],
-            leading:_selectedIndex == 0 ?
+            leading:_selectedIndex == 1 ?
             IconButton(icon: Icon(Icons.add), onPressed: (){
               Navigator.push(
                 context,

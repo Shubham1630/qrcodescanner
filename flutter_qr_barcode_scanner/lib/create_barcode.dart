@@ -77,11 +77,7 @@ class _CreateBarcodeState extends State<CreateBarcode> {
               children: [],
             ),
           ),
-          FlatButton(onPressed: (){
-            scanBarcodeNormal();
-          }, child: Column(children: [Icon(Icons.qr_code_scanner ,size: 60,),Padding(padding : EdgeInsets.all(5),child: Text("Scan")
-          )],)
-          )
+
 
         ],
       )
